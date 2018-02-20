@@ -1,7 +1,7 @@
 
 
 # Site
-> 基於 Golang 的 Backend  
+> 基於 Golang 的 Back-End  
 
 **Using**
  - Go
