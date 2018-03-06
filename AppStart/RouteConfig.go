@@ -2,6 +2,7 @@ package AppStart
 
 import (
 	"Site-Golang/Controllers"
+	"Site-Golang/Middlewares"
 
 	"github.com/gin-gonic/gin"
 
@@ -36,11 +37,18 @@ func RouteConfig() {
 	// Creates a default gin router
 	router := gin.Default() // Grouping routes
 
-	//group： api //api
-	api := router.Group("/api")
+	//group： api
+	api := router.Group("/api", Middlewares.Test())
 	{
 		api.GET("/get", Controllers.Student)
 		api.POST("/post", Controllers.Insert)
+	}
+
+	//group： auth
+	auth := router.Group("/auth")
+	{
+		auth.GET("/get", Controllers.Student)
+
 	}
 
 	router.Run(config.Port) // listen and serve on 0.0.0.0:8000

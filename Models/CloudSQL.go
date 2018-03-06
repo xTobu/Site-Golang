@@ -11,8 +11,8 @@ import (
 //Student struct
 type Student struct {
 	ID          int    `json:"id,omitempty"`
-	Name        string `json:"name,omitempty"`
-	Email       string `json:"email,omitempty"`
+	Name        string `json:"Name,omitempty"`
+	Email       string `json:"Email,omitempty"`
 	CreatedTime string `json:"CreatedTime,omitempty"`
 }
 
@@ -22,8 +22,11 @@ type Students struct {
 }
 
 func dbGetConn() *sql.DB {
+	//google cloud sql
 	ConnectionStr := os.Getenv("MYSQL_CONNECTION")
-	//ConnectionStr = "Junxiang:rmp4vu;6@tcp(127.0.0.1:3306)/Site_db"
+
+	//本機
+	ConnectionStr = "Junxiang:rmp4vu;6@tcp(127.0.0.1:3306)/Site_db"
 
 	db, err := sql.Open("mysql", ConnectionStr)
 	if err != nil {
@@ -42,11 +45,7 @@ func DBGetStudents() (data []Student, count int) {
 	db := dbGetConn()
 	defer db.Close()
 
-	//本機
-	//rows, err := db.Query("SELECT * FROM `school`.`students`")
-
-	//敦偉
-	rows, err := db.Query("SELECT * FROM Site_db.School")
+	rows, err := db.Query("SELECT * FROM `Site_db`.`School`")
 
 	defer rows.Close()
 
