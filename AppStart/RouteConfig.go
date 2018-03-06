@@ -38,16 +38,19 @@ func RouteConfig() {
 	router := gin.Default() // Grouping routes
 
 	//group： api
-	api := router.Group("/api", Middlewares.Test())
+	// api := router.Group("/api", Middlewares.Test())
+	api := router.Group("/api", Middlewares.ValidateTokenMiddleware())
 	{
-		api.GET("/get", Controllers.Student)
-		api.POST("/post", Controllers.Insert)
+		api.GET("/get", Controllers.APIStudent)
+		api.POST("/post", Controllers.APIInsert)
+		api.GET("/checktoken", Controllers.AuthCheckToken)
+
 	}
 
 	//group： auth
 	auth := router.Group("/auth")
 	{
-		auth.GET("/get", Controllers.Student)
+		auth.POST("/login", Controllers.AuthLogin)
 
 	}
 

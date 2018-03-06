@@ -1,6 +1,7 @@
 package Controllers
 
 import (
+	"encoding/json"
 	"net/http"
 
 	"Site-Golang/Models"
@@ -8,8 +9,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//Student use mysql
-func Student(c *gin.Context) {
+//APIStudent use mysql
+func APIStudent(c *gin.Context) {
 	if res, count := Models.DBGetStudents(); count > 0 {
 		n := Models.Students{Students: res}
 		c.JSON(http.StatusOK, n)
@@ -26,10 +27,25 @@ func Student(c *gin.Context) {
 	// }
 }
 
-//Insert use mysql handler 新增一筆學生資料
-func Insert(c *gin.Context) {
+//StudentReq struct
+type StudentReq struct {
+	Name  string `json:"name"`
+	Email string `json:"email"`
+}
 
-	if r := Models.DBInsertStudent(c.Request.FormValue("name"), c.Request.FormValue("email")); r == true {
+//APIInsert use mysql handler 新增一筆學生資料
+func APIInsert(c *gin.Context) {
+	var studentData StudentReq
+
+	err := json.NewDecoder(c.Request.Body).Decode(&studentData)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"result": "Error in request",
+		})
+		return
+	}
+	// c.Request.FormValue("email")
+	if r := Models.DBInsertStudent(studentData.Name, studentData.Email); r == true {
 		c.JSON(http.StatusOK, gin.H{
 			"result": "success",
 		})
