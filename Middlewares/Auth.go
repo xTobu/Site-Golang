@@ -20,12 +20,11 @@ func ValidateTokenMiddleware() gin.HandlerFunc {
 				return []byte(Models.SecretKey), nil
 			})
 
-		claims := token.Claims.(jwt.MapClaims)
-
 		if err == nil {
 			if token.Valid {
 				c.Next()
 			} else {
+				claims := token.Claims.(jwt.MapClaims)
 				c.JSON(http.StatusUnauthorized, gin.H{
 					"UserID":  claims["UserID"],
 					"message": "Token is not valid",
@@ -36,7 +35,6 @@ func ValidateTokenMiddleware() gin.HandlerFunc {
 			}
 		} else {
 			c.JSON(http.StatusUnauthorized, gin.H{
-				"UserID":  claims["UserID"],
 				"message": "Unauthorized access to this resource",
 			})
 			// c.Abort()表示请求被终止。

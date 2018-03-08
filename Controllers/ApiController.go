@@ -1,7 +1,6 @@
 package Controllers
 
 import (
-	"encoding/json"
 	"net/http"
 
 	"Site-Golang/Models"
@@ -29,15 +28,16 @@ func APIStudent(c *gin.Context) {
 
 //StudentReq struct
 type StudentReq struct {
-	Name  string `json:"name"`
-	Email string `json:"email"`
+	Name  string `form:"name" json:"name"`
+	Email string `form:"email" json:"email"`
 }
 
 //APIInsert use mysql handler 新增一筆學生資料
 func APIInsert(c *gin.Context) {
 	var studentData StudentReq
 
-	err := json.NewDecoder(c.Request.Body).Decode(&studentData)
+	// err := json.NewDecoder(c.Request.Body).Decode(&studentData)
+	err := c.Bind(&studentData)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
 			"result": "Error in request",

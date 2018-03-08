@@ -48,7 +48,7 @@ func RouteConfig() {
 	}
 
 	//group： auth
-	auth := router.Group("/auth")
+	auth := router.Group("/auth", Middlewares.CORSMiddleware())
 	{
 		auth.POST("/login", Controllers.AuthLogin)
 

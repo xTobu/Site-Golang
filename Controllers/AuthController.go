@@ -2,7 +2,6 @@ package Controllers
 
 import (
 	"Site-Golang/Models"
-	"encoding/json"
 	"log"
 	"net/http"
 	"strings"
@@ -21,24 +20,38 @@ func fatal(err error) {
 //AuthLogin 登入 使用go-jwt取得Token
 func AuthLogin(c *gin.Context) {
 
+	// var user Models.UserCredentials
+	// c.Bind(&user)
+	// if c.Bind(&user) == nil {
+	// 	log.Println("====== Bind By Query String ======")
+	// 	log.Println(user.Username)
+	// 	log.Println(user.Password)
+	// }
+
+	// if c.BindJSON(&user) == nil {
+	// 	log.Println("====== Bind By JSON ======")
+	// 	log.Println(user.Username)
+	// 	log.Println(user.Password)
+	// }
+
+	//判斷body Form
 	var user Models.UserCredentials
-
-	err := json.NewDecoder(c.Request.Body).Decode(&user)
-
+	// err := json.NewDecoder(c.Request.Body).Decode(&user)
+	err := c.Bind(&user)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"result": "Error in request",
+			"result": user.Username,
 		})
 		return
 	}
 
-	if strings.ToLower(user.Username) != "someone" {
-		if user.Password != "p@ssword" {
-			c.JSON(http.StatusOK, gin.H{
-				"result": "Error logging in",
-			})
-			return
-		}
+	//判斷資料正確
+	if (strings.ToLower(user.Username) != Models.Username) && (user.Password != Models.Password) {
+		c.JSON(http.StatusOK, gin.H{
+			"result": "Error logging in",
+		})
+		return
+
 	}
 
 	token := jwt.New(jwt.SigningMethodHS256)
