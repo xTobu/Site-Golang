@@ -40,6 +40,7 @@ func RouteConfig() {
 	//group： api
 	// api := router.Group("/api", Middlewares.Test())
 	api := router.Group("/api", Middlewares.ValidateTokenMiddleware())
+	api.Use(Middlewares.CORSMiddleware())
 	{
 		api.GET("/get", Controllers.APIStudent)
 		api.POST("/post", Controllers.APIInsert)

@@ -46,8 +46,8 @@ func AuthLogin(c *gin.Context) {
 	}
 
 	//判斷資料正確
-	if (strings.ToLower(user.Username) != Models.Username) && (user.Password != Models.Password) {
-		c.JSON(http.StatusOK, gin.H{
+	if (strings.ToLower(user.Username) != Models.Username) || (user.Password != Models.Password) {
+		c.JSON(http.StatusForbidden, gin.H{
 			"result": "Error logging in",
 		})
 		return
@@ -69,7 +69,7 @@ func AuthLogin(c *gin.Context) {
 	token.Claims = claims
 
 	if err != nil {
-		c.JSON(http.StatusOK, gin.H{
+		c.JSON(http.StatusInternalServerError, gin.H{
 			"result": "Error extracting the key",
 		})
 		fatal(err)
@@ -77,7 +77,7 @@ func AuthLogin(c *gin.Context) {
 
 	tokenString, err := token.SignedString([]byte(Models.SecretKey))
 	if err != nil {
-		c.JSON(http.StatusOK, gin.H{
+		c.JSON(http.StatusInternalServerError, gin.H{
 			"result": "Error while signing the token",
 		})
 		fatal(err)

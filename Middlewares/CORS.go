@@ -1,6 +1,10 @@
 package Middlewares
 
-import "github.com/gin-gonic/gin"
+import (
+	"fmt"
+
+	"github.com/gin-gonic/gin"
+)
 
 //CORSMiddleware Header().Set
 func CORSMiddleware() gin.HandlerFunc {
@@ -11,10 +15,10 @@ func CORSMiddleware() gin.HandlerFunc {
 		c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS, GET, PUT")
 
 		if c.Request.Method == "OPTIONS" {
-			c.AbortWithStatus(204)
-			return
+			fmt.Println("OPTIONS")
+			c.AbortWithStatus(200)
+		} else {
+			c.Next()
 		}
-
-		c.Next()
 	}
 }

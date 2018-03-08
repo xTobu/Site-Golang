@@ -39,7 +39,7 @@ func APIInsert(c *gin.Context) {
 	// err := json.NewDecoder(c.Request.Body).Decode(&studentData)
 	err := c.Bind(&studentData)
 	if err != nil {
-		c.JSON(http.StatusOK, gin.H{
+		c.JSON(http.StatusForbidden, gin.H{
 			"result": "Error in request",
 		})
 		return
@@ -50,7 +50,7 @@ func APIInsert(c *gin.Context) {
 			"result": "success",
 		})
 	} else {
-		c.JSON(http.StatusOK, gin.H{
+		c.JSON(http.StatusForbidden, gin.H{
 			"result": "fail",
 		})
 		// c.JSON(http.StatusNoContent)
