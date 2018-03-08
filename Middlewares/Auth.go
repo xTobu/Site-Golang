@@ -14,16 +14,20 @@ import (
 //ValidateTokenMiddleware 群组中间件
 func ValidateTokenMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
+
 		token, err := request.ParseFromRequest(c.Request, request.AuthorizationHeaderExtractor,
 			func(token *jwt.Token) (interface{}, error) {
 				return []byte(Models.SecretKey), nil
 			})
+
+		claims := token.Claims.(jwt.MapClaims)
 
 		if err == nil {
 			if token.Valid {
 				c.Next()
 			} else {
 				c.JSON(http.StatusUnauthorized, gin.H{
+					"UserID":  claims["UserID"],
 					"message": "Token is not valid",
 				})
 				// c.Abort()表示请求被终止。
@@ -32,6 +36,7 @@ func ValidateTokenMiddleware() gin.HandlerFunc {
 			}
 		} else {
 			c.JSON(http.StatusUnauthorized, gin.H{
+				"UserID":  claims["UserID"],
 				"message": "Unauthorized access to this resource",
 			})
 			// c.Abort()表示请求被终止。

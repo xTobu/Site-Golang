@@ -49,6 +49,10 @@ func AuthLogin(c *gin.Context) {
 
 	//建立時間
 	claims["iat"] = time.Now().Unix()
+
+	claims["UserID"] = 0
+	claims["UserWeight"] = 0
+
 	token.Claims = claims
 
 	if err != nil {
