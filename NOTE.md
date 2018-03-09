@@ -1,7 +1,7 @@
 # Note
 > 記錄學習過程的大小事  
 ___
-## 2018-03-09
+##### 2018-03-09
 ### JWT
 #### 當 axios 掛上 axios.defaults.headers.common\['Authorization'\] ,  
 #### GET API時會出現以下錯誤
@@ -27,7 +27,7 @@ CORSMiddleware必須掛在第一個middleware(router.Use)，
 如果AuthMiddleware在之前，這樣prefight進不去任何一端。
 
 ***
-## 2018-03-08
+##### 2018-03-08
 ### c.Bind、c.BindJSON、json.NewDecoder(c.Request.Body).Decode(&studentData)
 #### 當axios使用qs.stringify傳送Content-Type:application/x-www-form-urlencoded時
 - axios.post
