@@ -15,10 +15,13 @@ func CORSMiddleware() gin.HandlerFunc {
 		c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS, GET, PUT")
 
 		if c.Request.Method == "OPTIONS" {
-			fmt.Println("OPTIONS")
-			c.AbortWithStatus(200)
-		} else {
-			c.Next()
+			fmt.Println("OPTIONS", "204 No Content")
+			c.AbortWithStatus(204)
+			return
 		}
+
+		c.Next()
 	}
 }
+
+//Headers Authorization preflight RequestMethod:OPTIONS CORSMiddleware

@@ -2,6 +2,7 @@ package Middlewares
 
 import (
 	"Site-Golang/Models"
+	"fmt"
 	"net/http"
 
 	jwt "github.com/dgrijalva/jwt-go"
@@ -14,7 +15,7 @@ import (
 //ValidateTokenMiddleware 群组中间件
 func ValidateTokenMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-
+		fmt.Println("ValidateTokenMiddleware")
 		token, err := request.ParseFromRequest(c.Request, request.AuthorizationHeaderExtractor,
 			func(token *jwt.Token) (interface{}, error) {
 				return []byte(Models.SecretKey), nil
