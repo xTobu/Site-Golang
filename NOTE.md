@@ -30,6 +30,7 @@ CORSMiddleware必須掛在第一個middleware(router.Use)，
 ## 2018-03-08
 ### c.Bind、c.BindJSON、json.NewDecoder(c.Request.Body).Decode(&studentData)
 #### 當axios使用qs.stringify傳送Content-Type:application/x-www-form-urlencoded時
+- axios.post
 ```
 axios.post(
   'http://localhost:8080/auth/login',
@@ -56,6 +57,7 @@ c.Bind(&studentData)
 ```
 
 #### 另一種axios
+- axios.post
 ```
  axios({
  	method: 'post',
