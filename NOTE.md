@@ -69,7 +69,7 @@ c.Bind(&studentData)
      }
  })
 ```
-- 會是一個form data  
+- 會是一個Form Data  
 ```
 Form Data  
 {username: 'aa', password: 'bb'}
