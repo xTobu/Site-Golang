@@ -7,8 +7,11 @@
  - Go
  - Gin
  - go-sql-driver/mysql
+ - google.golang.org/appengine
+ - dgrijalva/jwt-go
  
 **Database**
+ - MySQL
  - Cloud SQL
 
 **Hosting**  
