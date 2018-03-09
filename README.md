@@ -1,7 +1,7 @@
-
-
 # Site
-> 基於 Golang 的 Back-End  
+> 基於 Golang 的 Back-End 
+>
+> 過程中的紀錄：[NOTE.md](NOTE.md)
 
 **Using**
  - Go
