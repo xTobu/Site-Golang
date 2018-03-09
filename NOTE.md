@@ -14,7 +14,7 @@ https://developer.mozilla.org/zh-TW/docs/Web/HTTP/CORS
 
   
 - 解決：  
-瀏覽器送出了預檢請求（OPTIONS method request），
+瀏覽器送出了"preflight" request（預檢請求）（一種 OPTIONS method request），
 必須在該API增加OPTIONS responds 並回傳 status code 200，  
 且允許 Access-Control-Allow-Headers: Authorization header。   
   
