@@ -7,7 +7,7 @@
 > [筆記](NOTE.md)
   
 ![author](https://img.shields.io/badge/Author-Junxiang-yellow.svg)   
-![author](https://img.shields.io/badge/Version-0.0.1-blue.svg)
+![author](https://img.shields.io/badge/Version-0.0.0-blue.svg)
 
  
 
