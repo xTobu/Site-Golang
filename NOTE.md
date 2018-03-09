@@ -29,7 +29,7 @@ CORSMiddleware必須掛在第一個middleware(router.Use)，
 ***
 ## 2018-03-08
 ### c.Bind、c.BindJSON、json.NewDecoder(c.Request.Body).Decode(&studentData)
-當axios使用qs.stringify傳送Content-Type:application/x-www-form-urlencoded時
+#### 當axios使用qs.stringify傳送Content-Type:application/x-www-form-urlencoded時
 ```
 axios.post(
   'http://localhost:8080/auth/login',
@@ -39,12 +39,13 @@ axios.post(
   })
 )
 ```
-這樣的data是兩個form data(DevTools -> Network)  
+- Data是兩個Form Data (DevTools -> Network)  
+```
 Form Data(2)  
 　username: aa  
 　password: bb  
-
-在go gin裡接收的方式
+```  
+- 在go gin裡接收的方式
 ```
 type StudentReq struct {
 	Name  string `form:"name"`
@@ -54,7 +55,7 @@ var studentData StudentReq
 c.Bind(&studentData)
 ```
 
-另一種axios
+#### 另一種axios
 ```
  axios({
  	method: 'post',
@@ -68,11 +69,13 @@ c.Bind(&studentData)
      }
  })
 ```
-會是一個form data  
+- 會是一個form data  
+```
 Form Data  
-{username: 'aa', password: 'bb'}  
+{username: 'aa', password: 'bb'}
+```  
 
-在go gin裡接收的方式
+- 在go gin裡接收的方式
 ```
 type StudentReq struct {
 	Name  string `json:"name"`
