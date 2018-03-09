@@ -13,7 +13,7 @@
 
 ## Development
 
-**Using**
+**Dependencies**
  - Go
  - Gin
  - go-sql-driver/mysql
@@ -26,14 +26,13 @@
 
 **Hosting**  
  - Google App Engine  ([Link](https://xtobu-site.appspot.com))
-
-
-
+  
+  
+  
 ##  Setup
 
-#### Dev
+#### Dev at localhost:8080
 ```bash
-# serve at localhost:8080
 go run ./main.go
 ```
 
