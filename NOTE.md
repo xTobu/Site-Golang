@@ -3,26 +3,26 @@
 ___
 ## 2018-03-09
 ### JWT
-當 axios 掛上 axios.defaults.headers.common\['Authorization'\] ,  
-GET API時會出現以下錯誤
+#### 當 axios 掛上 axios.defaults.headers.common\['Authorization'\] ,  
+#### GET API時會出現以下錯誤
 ```
  Request header field header is not allowed by Access-Control-Allow-Headers in preflight response.
 ```
-原因：  
+- 原因：  
 https://stackoverflow.com/questions/44245588/how-to-send-authorization-header-with-axios
 https://developer.mozilla.org/zh-TW/docs/Web/HTTP/CORS
 
   
-解決：  
+- 解決：  
 瀏覽器送出了預檢請求（OPTIONS method request），
 必須在該API增加OPTIONS responds 並回傳 status code 200，  
 且允許 Access-Control-Allow-Headers: Authorization header。   
   
-最後做法：  
+- 最後做法：  
 寫CORSMiddleware，並判斷Request.Method，  
 若是OPTIONS就回傳204，這樣就不必對會接收到prefight的端口開OPTIONS。
   
-注意：  
+- 注意：  
 CORSMiddleware必須掛在第一個middleware(router.Use)，  
 如果AuthMiddleware在之前，這樣prefight進不去任何一端。
 
