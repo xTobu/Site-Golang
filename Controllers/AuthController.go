@@ -56,9 +56,9 @@ func AuthLogin(c *gin.Context) {
 
 	token := jwt.New(jwt.SigningMethodHS256)
 	claims := make(jwt.MapClaims)
-	//有效時間: 1 hour
-	//claims["exp"] = time.Now().Add(time.Hour * time.Duration(1)).Unix()
-	claims["exp"] = time.Now().Add(time.Second * time.Duration(60)).Unix()
+	//有效時間: 24 hour
+	claims["exp"] = time.Now().Add(time.Hour * time.Duration(24)).Unix()
+	//claims["exp"] = time.Now().Add(time.Second * time.Duration(60)).Unix()
 
 	//建立時間
 	claims["iat"] = time.Now().Unix()
