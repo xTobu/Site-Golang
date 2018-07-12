@@ -41,7 +41,7 @@ gcloud app deploy
 ```  
 ***  
 golang 的練習  
-　　
+
 驗證　：dgrijalva/jwt-go  
 資料庫：go-sql-driver/mysql  
 發佈　：google.golang.org/appengine  
