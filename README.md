@@ -7,7 +7,7 @@
 > [筆記](NOTE.md)
   
 ![author](https://img.shields.io/badge/Author-Junxiang-yellow.svg)   
-![author](https://img.shields.io/badge/Version-0.0.0-blue.svg)
+![version](https://img.shields.io/badge/Version-0.0.0-blue.svg)
 ___
 
 ## Development
@@ -38,7 +38,17 @@ go run ./main.go
 #### Deploy using Google Cloud SDK
 ```bash
 gcloud app deploy
-```
+```  
+***  
+golang 的練習  
+　　
+驗證　：dgrijalva/jwt-go  
+資料庫：go-sql-driver/mysql  
+發佈　：google.golang.org/appengine  
+
+api/login  
+username:admin  
+password:0000  
 
 
 [version-badge]: https://img.shields.io/badge/version-1.0.0-blue.svg
