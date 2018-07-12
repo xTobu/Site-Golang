@@ -40,15 +40,19 @@ go run ./main.go
 gcloud app deploy
 ```  
 ***  
-golang 的練習  
+### golang 的練習  
 
-驗證　：dgrijalva/jwt-go  
-資料庫：go-sql-driver/mysql  
-發佈　：google.golang.org/appengine  
+- 驗證
+  - dgrijalva/jwt-go  
+- 資料庫
+  - go-sql-driver/mysql  
+- 發佈
+  - google.golang.org/appengine  
 
-api/login  
-username:admin  
-password:0000  
+**api/login**  
+
+username: `admin`  
+password: `0000`  
 
 
 [version-badge]: https://img.shields.io/badge/version-1.0.0-blue.svg
