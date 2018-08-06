@@ -33,6 +33,8 @@ ___
 #### Dev at localhost:8080
 ```bash
 go run ./main.go
+# or
+go build -o build.exe && ./build.exe
 ```
 
 #### Deploy using Google Cloud SDK
